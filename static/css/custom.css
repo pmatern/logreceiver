@@ -1,0 +1,23 @@
+/* GroupHug v.1.2.2 - custom.css
+ *
+ * @note : Any enhancement should be done in this file
+ * @author : you
+ * @author URL : your url
+ *
+ */
+iframe[seamless]{
+    background-color: transparent;
+    border: 0px none transparent;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.flot {
+  height: 500px;
+  width: 100%;
+}
+
+.short_flot {
+  height: 300px;
+  width: 100%;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" id="base-color" href="{{url_for('static', filename='css/color/serene.css')}}"><!-- Base Theme Color -->
+    <!-- START META SECTION -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- <title>{% block title %}{% endblock %}</title> -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0">
+    <!--/ END META SECTION -->
+
+    <!-- START STYLESHEET SECTION -->
+    <!-- IMPORTANT! : This is for demo purpose only. All the available plugin will be loaded at once -->
+    <!-- Stylesheet(Bootstrap) -->
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap/css/bootstrap-responsive.min.css')}}">
+    <!--/ Stylesheet(Bootstrap) -->
+
+    <!-- Stylesheet(Application) -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/custom.css')}}">
+    <!--/ Stylesheet(Application) -->
+
+    <!-- Stylesheet(Plugins) -->
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/jui/css/jquery-ui-1.10.3.min.css')}}">
+    <!--/ Stylesheet(Plugins) -->
+    <!--/ END STYLESHEET SECTION -->
+
+    <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
+    <!-- Javascript(Modernizr) -->
+    <script src="{{url_for('static', filename='assets/modernizr/js/modernizr-2.6.2.min.js')}}"></script>
+    <!--/ Javascript(Modernizr) -->
+    <!--/ END JAVASCRIPT SECTION -->
+    {% endblock %}
+</head>
+<body>
+    <!-- START Template Wrapper -->
+    <!-- If you want to enable the fixed sidebar or fixed header, just add `.fixed-sidebar` or `.fixed-header` class to the `#wrapper` div below -->
+    <!-- IMPORTANT! : fixed sidebar will automatically add `.fixed-header` class to the `#wrapper` div -->
+    <!-- If you want to enable the boxed layout, just add `.boxed-layout` class to the `#wrapper` div below -->
+    <div id="wrapper" class="fixed-header">
+        <!-- START Template Canvas -->
+        <div id="canvas">
+            <!-- START Template Header -->
+            <header id="header">
+                <!-- START Logo -->
+                <div class="logo hidden-phone hidden-tablet">
+                    <a href="#">&nbsp;&nbsp;<span class="icon icone-beaker"></span>&nbsp;&nbsp;Log Reciever Again</a>
+                    <small class="version"></small>
+                </div>
+                <!--/ END Logo -->
+
+                <!-- START Mobile Sidebar Toggler -->
+                <a href="#" class="toggler" data-toggle="sidebar"><span class="icon icone-reorder"></span></a>
+                <!--/ END Mobile Sidebar Toggler -->
+
+
+            </header>
+            <!--/ END Template Header -->
+
+            <!-- START Template Sidebar -->
+            <aside id="sidebar">
+                <!-- START Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- START Tab Content -->
+                    <div class="tab-content">
+                        <!-- START Tab Pane(menu) -->
+                        <div class="tab-pane active" id="tab-menu">
+                            <!-- START Sidebar Menu -->
+                            <nav id="nav" class="accordion">
+                                <ul id="navigation">
+                                    <!-- START Menu Divider -->
+                                    <li class="divider">Main Menu</li>
+                                    <!--/ END Menu Divider -->
+
+                                    <!-- START Menu -->
+                                    <li class="accordion-group ">
+                                        <a data-toggle="collapse" data-parent="#navigation" href="#submenu2">
+                                            <span class="icon icone-beaker"></span>
+                                            <span class="text">Foo</span>
+                                            <span class="arrow icone-caret-down"></span>
+                                        </a>
+                                        <!-- START Submenu Menu -->
+                                        <ul id="submenu2" class="collapse ">
+                                            <li class=""><a href="/help"><span class="icon icone-angle-right"></span>Halp</a></li>
+                                        </ul>
+                                        <!--/ END Submenu Menu -->
+                                    </li>
+                                    <!--/ END Menu -->
+                                </ul>
+                            </nav>
+                            <!--/ END Sidebar Menu -->
+                        </div>
+                        <!--/ END Tab Pane(menu) -->
+                    </div>
+                    <!--/ END Tab Content -->
+                </div>
+                <!--/ END Sidebar Content -->
+            </aside>
+            <!--/ END Template Sidebar -->
+
+            <!-- START CONTENT -->
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+        <!--/ END Template Canvas -->
+    </div>
+    <!--/ END Template Wrapper -->
+
+    {% block js %}
+    <!-- IMPORTANT! : This is for demo purpose only. All the available plugin will be loaded at once -->
+    <!-- START JAVASCRIPT SECTION - Include at the bottom of the page to reduce load time -->
+    <!-- Javascript(Vendors) -->
+    <script src="{{url_for('static', filename='assets/jquery/js/jquery-1.10.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/jui/js/jquery-ui-1.10.3.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/jquery/js/jquery-migrate-1.2.1.min.js')}}"></script>
+    <!--/ Javascript(Vendors) -->
+
+    <!-- Javascript(Plugins) -->
+    <script src="{{url_for('static', filename='assets/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    <!-- Javascript (Application) -->
+    <script src="{{url_for('static', filename='js/application.js')}}"></script>
+    <!--/ Javascript (Application) -->
+    <!--/ END JAVASCRIPT SECTION -->
+    {% endblock %}
+</body>
+</html>

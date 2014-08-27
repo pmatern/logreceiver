@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ metadata['page_title'] }}
+{% endblock %}
+
+{% block content %}
+<!-- START Template Main Content -->
+<section id="main">
+    <!-- START Bootstrap Navbar -->
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <!-- Breadcrumb -->
+            <ul class="breadcrumb">
+                <li><a href="#">{{ metadata['title'] }}</a> <span class="divider"></span></li>
+                <li class="active">{{ metadata['page'] }}</li>
+            </ul>
+            <!--/ Breadcrumb -->
+        </div>
+    </div>
+    <!--/ END Bootstrap Navbar -->
+
+    <!-- START Content -->
+    <div class="container-fluid">
+        <!-- START Row -->
+        <div class="row-fluid">
+            <center><img src="{{ url_for('static', filename='img/shipit.png') }}"></center>
+        </div>
+        <!--/ END Row -->
+    </div>
+    <!--/ END Content -->
+
+</section>
+<!--/ END Template Main Content -->
+{% endblock %}
+
+
+
+

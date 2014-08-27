@@ -1,5 +1,6 @@
 from flask import render_template, Flask
 from views.main_views import main
+from views.logreceive import logreceive
 #import newrelic.agent
 import os
 import socket
@@ -14,6 +15,7 @@ app = Flask('log_receiver_again')
 app.config.from_object('config')
 
 app.register_blueprint(main)
+app.register_blueprint(logreceive)
 
 app.debug = False
 @app.errorhandler(503)

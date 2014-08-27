@@ -2,17 +2,18 @@ import snappy
 import json
 from flask import Blueprint, request
 
-
 logreceive = Blueprint('logreceive', __name__)
 
+@logreceive.route('/log/receive/events', methods=['POST'])
+def receive_events():
+    parse_and_store(request.data)
 
 @logreceive.route('/log/receive/events/snappy', methods=['POST'])
-def snappy_compressed_events():
-    entry_bytes = snappy.uncompress(request.data)
-    json_logs = parse_log_entries(entry_bytes)
-    send_to_mongo(json_logs)
+def receive_snappy_compressed_events():
+    parse_and_store(snappy.uncompress(request.data))
 
-    pass
+def parse_and_store(entry_bytes):
+    send_to_mongo(parse_log_entries(entry_bytes))
 
 def parse_log_entries(entry_bytes):
     idx = 0

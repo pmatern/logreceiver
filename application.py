@@ -1,5 +1,5 @@
 from flask import render_template, Flask
-from views import main
+from views.main_views import main
 #import newrelic.agent
 import os
 import socket

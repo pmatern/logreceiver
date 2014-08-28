@@ -1,2 +1,5 @@
 CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
+EXCLUDED_NAMES = ["METRICS_JIVE_LOG", "METRICS_HTTP_REQUEST"]
+DB_HOST = "localhost"
+DB_PORT = 27017

@@ -2,6 +2,7 @@ import snappy
 import json
 from pymongo import MongoClient
 from flask import Blueprint, request
+from application import app
 
 logreceive = Blueprint('logreceive', __name__)
 
@@ -16,7 +17,8 @@ def receive_snappy_compressed_events():
     return "OK", 200
 
 def parse_and_store(entry_bytes):
-    send_to_mongo(parse_log_entries(entry_bytes))
+    log_entries = parse_log_entries(entry_bytes)
+    send_to_mongo(strip_excluded(log_entries))
 
 def parse_log_entries(entry_bytes):
     idx = 0
@@ -33,10 +35,19 @@ def parse_log_entries(entry_bytes):
 
     return msgs
 
+def strip_excluded(log_entries):
+    excluded = app.config["EXCLUDED_NAMES"]
+    stripped = []
+    for log_entry in log_entries:
+        if log_entry["name"] not in excluded:
+            stripped.append(log_entry)
+
+    return stripped
+
 
 def send_to_mongo(json_logs):
-    client = MongoClient("localhost", 27017) # yeah I know
-    db = client.metric_logs # yeah I know
+    client = MongoClient(app.config["DB_HOST"], app.config["DB_PORT"])
+    db = client.metric_logs
     collection = db.wal
     collection.insert(json_logs)
 

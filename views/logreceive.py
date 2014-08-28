@@ -46,10 +46,11 @@ def strip_excluded(log_entries):
 
 
 def send_to_mongo(json_logs):
-    client = MongoClient(app.config["DB_HOST"], app.config["DB_PORT"])
-    db = client.metric_logs
-    collection = db.wal
-    collection.insert(json_logs)
+    if json_logs:
+        client = MongoClient(app.config["DB_HOST"], app.config["DB_PORT"])
+        db = client.metric_logs
+        collection = db.wal
+        collection.insert(json_logs)
 
 
 def build_int(four_bytes):

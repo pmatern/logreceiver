@@ -8,16 +8,15 @@ logreceive = Blueprint('logreceive', __name__)
 
 @logreceive.route('/log/receive/events', methods=['POST'])
 def receive_events():
-    parse_and_store(request.data)
+    store(parse_log_entries(request.data))
     return "OK", 200
 
 @logreceive.route('/log/receive/events/snappy', methods=['POST'])
 def receive_snappy_compressed_events():
-    parse_and_store(snappy.uncompress(request.data))
+    store(parse_log_entries(snappy.uncompress(request.data)))
     return "OK", 200
 
-def parse_and_store(entry_bytes):
-    log_entries = parse_log_entries(entry_bytes)
+def store(log_entries):
     send_to_mongo(strip_excluded(log_entries))
 
 def parse_log_entries(entry_bytes):
@@ -27,6 +26,8 @@ def parse_log_entries(entry_bytes):
     while idx < len(entry_bytes):
         size = build_int(entry_bytes[idx : idx + 4])
         idx += 4
+        if size < 0 or size > len(entry_bytes) - idx:
+            raise IndexError(size)
         json_bytes = entry_bytes[idx : idx + size]
         idx += size
 

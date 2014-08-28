@@ -7,3 +7,4 @@ Werkzeug==0.9.4
 pymongo==2.7
 newrelic>=2.22.1.20
 python-snappy==0.5
+tornado=4.0.1

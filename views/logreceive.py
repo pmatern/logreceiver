@@ -2,7 +2,7 @@ import snappy
 import json
 from pymongo import MongoClient
 from flask import Blueprint, request
-from application import app
+from flask import current_app as app
 
 logreceive = Blueprint('logreceive', __name__)
 

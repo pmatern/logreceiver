@@ -1,7 +1,7 @@
 import unittest
 from views.logreceive import remove_dots_from_keys
 
-class OutcomesTest(unittest.TestCase):
+class TestCleaning(unittest.TestCase):
 
     def test_fix_keys(self):
         log_entry = {}

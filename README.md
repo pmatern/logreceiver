@@ -7,8 +7,8 @@
 
 ## Required Stuff
 
+    brew install snappy mongodb
     pip install -r requirements.txt
-    brew install mongodb
 
 ## Running
 

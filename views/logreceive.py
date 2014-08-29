@@ -18,7 +18,12 @@ def receive_snappy_compressed_events():
 
 def parse_and_store(entry_bytes):
     log_entries = parse_log_entries(entry_bytes)
-    send_to_mongo(strip_excluded(log_entries))
+    log_entries = strip_excluded(log_entries)
+
+    for log_entry in log_entries:
+        remove_dots_from_keys(log_entry)
+
+    send_to_mongo(log_entries)
 
 def parse_log_entries(entry_bytes):
     idx = 0
@@ -43,6 +48,21 @@ def strip_excluded(log_entries):
             stripped.append(log_entry)
 
     return stripped
+
+def remove_dots_from_keys(log_entry):
+    bad_keys = []
+
+    for key, value in log_entry.items():
+        if isinstance(value, dict):
+            remove_dots_from_keys(value)
+
+        if "." in key:
+            bad_keys.append(key)
+            new_key = key.replace(".", "_")
+            log_entry[new_key] = value
+
+    for key in bad_keys:
+        del log_entry[key]
 
 
 def send_to_mongo(json_logs):
